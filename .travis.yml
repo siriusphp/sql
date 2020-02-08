@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
   - 7.2
   - 7.3
@@ -9,7 +8,7 @@ php:
 
 matrix:
     allow_failures:
-        - php: 7.4
+        - php: 7.1
 
 before_script:
  - wget -c https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
@@ -18,9 +17,9 @@ before_script:
 
 script:
   - mkdir -p build/logs
-  - composer run-script phpcs
-  - cd tests && ../vendor/bin/phpunit && cd ..
+  - composer run-script php-cs
+  - vendor/bin/phpunit
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover ../build/clover.xml
+  - php ocular.phar code-coverage:upload --format=php-clover build/clover.xml

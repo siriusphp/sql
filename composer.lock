@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4eb4ada345ee0f395d68431b621615b5",
+    "content-hash": "430bdada291ddd4e12426fe5e47e711d",
     "packages": [
         {
             "name": "atlas/pdo",
@@ -1690,6 +1690,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.1"
+    },
     "platform-dev": []
 }

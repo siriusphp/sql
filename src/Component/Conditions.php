@@ -42,11 +42,13 @@ class Conditions extends Component
         $this->or($this->bindings->sprintf($format, ...$bindInline), null, null);
     }
 
-    public function openGroup($type = 'AND') {
+    public function openGroup($type = 'AND')
+    {
         $this->list[] = empty($this->list) ? '(' : $type . ' (';
     }
 
-    public function closeGroup() {
+    public function closeGroup()
+    {
         $this->list[] = ')';
     }
 
@@ -160,8 +162,7 @@ class Conditions extends Component
         return "$column $condition $bind";
     }
 
-    public
-    function build(): string
+    public function build(): string
     {
         if (empty($this->list)) {
             return '';

@@ -33,7 +33,7 @@ class From extends Component
             $condition = 'ON ' . $condition;
         }
 
-        if ( ! empty($bindingsInline)) {
+        if (! empty($bindingsInline)) {
             $condition = $this->bindings->sprintf($condition, ...$bindingsInline);
         }
 

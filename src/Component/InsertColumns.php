@@ -17,6 +17,5 @@ class InsertColumns extends ModifyColumns
                . PHP_EOL . ') VALUES ('
                . $this->indentCsv(array_values($this->list))
                . PHP_EOL . ')';
-
     }
 }

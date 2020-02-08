@@ -28,14 +28,14 @@ abstract class ModifyColumns extends Component
 
     public function hold(string $column, ...$value): void
     {
-        if ( ! empty($value) && $value[0] instanceof Raw) {
+        if (! empty($value) && $value[0] instanceof Raw) {
             $this->list[$column] = (string)$value[0];
 
             return;
         }
 
         $this->list[$column] = ":{$column}";
-        if ( ! empty($value)) {
+        if (! empty($value)) {
             $this->bindings->value($column, ...$value);
         }
     }

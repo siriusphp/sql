@@ -21,7 +21,7 @@ abstract class Query
     public function __construct(Connection $connection, Bindings $bindings = null, $indent = '')
     {
         $this->connection = $connection;
-        if ( ! $bindings) {
+        if (! $bindings) {
             $bindings = new Bindings();
         }
         $this->bindings = $bindings;

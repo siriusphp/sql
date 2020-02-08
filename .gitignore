@@ -4,3 +4,4 @@ phpcbf.phar
 phpcs.phar
 build
 docs/couscous.phar
+docs/.couscous/

@@ -25,8 +25,7 @@ class From extends Component
     {
         $condition = ltrim($condition);
 
-        if (
-            $condition !== ''
+        if ($condition !== ''
             && strtoupper(substr($condition, 0, 3)) !== 'ON '
             && strtoupper(substr($condition, 0, 6)) !== 'USING '
         ) {

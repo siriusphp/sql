@@ -3,5 +3,5 @@ php-cs-fixer.phar
 phpcbf.phar
 phpcs.phar
 build
-docs/couscous.phar
+couscous.phar
 docs/.couscous/

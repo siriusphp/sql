@@ -39,7 +39,7 @@
             "php php-cs-fixer.phar fix ./src --rules=@PSR2"
         ],
         "build-docs": [
-            "php docs/couscous.phar generate --target=build/docs/"
+            "php couscous.phar generate --target=build/docs/ ./docs"
         ]
     }
 }

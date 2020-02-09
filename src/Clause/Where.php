@@ -104,6 +104,13 @@ trait Where
         return $this;
     }
 
+    public function groupCurrentWhere()
+    {
+        $this->where->groupCurrent();
+
+        return $this;
+    }
+
     public function resetWhere()
     {
         $this->where = new Conditions($this->bindings, 'WHERE');

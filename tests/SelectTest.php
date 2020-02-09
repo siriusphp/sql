@@ -205,6 +205,57 @@ SQL;
         ], $select->getBindValues());
     }
 
+
+    public function test_auto_closing_groups()
+    {
+        $select = $this->newSelect();
+        $select->from('posts')
+               ->columns('*')
+               ->where('id', 10)
+               ->whereStartSet()
+               ->where('parent_id', 10)
+               ->orWhere('parent_id', 11);
+
+        $expectedStatement = <<<SQL
+SELECT
+    *
+FROM
+    posts
+WHERE
+    id = :__1__
+    AND (
+        parent_id = :__2__
+        OR parent_id = :__3__
+    )
+SQL;
+
+        $this->assertSameStatement($expectedStatement, $select->getStatement());
+    }
+
+    public function test_grouping_current_conditions()
+    {
+        $select = $this->newSelect();
+        $select->from('posts')
+               ->columns('*')
+               ->where('id', 10)
+               ->orWhere('id', 11)
+               ->groupCurrentWhere()
+               ->where('title', 'abc');
+
+        $expectedStatement = <<<SQL
+SELECT
+    *
+FROM
+    posts
+WHERE
+    (id = :__1__
+    OR id = :__2__)
+    AND title = :__3__
+SQL;
+
+        $this->assertSamestatement($expectedStatement, $select->getStatement());
+    }
+
     public function test_raw_conditions()
     {
         $select = $this->newSelect();

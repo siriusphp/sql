@@ -16,10 +16,20 @@ class Conditions extends Component
 
     protected $list = [];
 
+    protected $openedGroups = 0;
+
     public function __construct(Bindings $bindings, string $type)
     {
         $this->bindings = $bindings;
         $this->type     = $type;
+    }
+
+    public function groupCurrent()
+    {
+        if (! empty($this->list)) {
+            array_unshift($this->list, '(');
+            $this->list[] = ')';
+        }
     }
 
     public function and(string $column, $value = null, $condition = '='): void
@@ -45,11 +55,15 @@ class Conditions extends Component
     public function openGroup($type = 'AND')
     {
         $this->list[] = empty($this->list) ? '(' : $type . ' (';
+        $this->openedGroups++;
     }
 
     public function closeGroup()
     {
-        $this->list[] = ')';
+        if ($this->openedGroups > 0) {
+            $this->list[] = ')';
+            $this->openedGroups--;
+        }
     }
 
     protected function append(string $andor, string $expr): void
@@ -162,11 +176,20 @@ class Conditions extends Component
         return "$column $condition $bind";
     }
 
+    protected function ensureGroupsAreClosed()
+    {
+        if ($this->openedGroups > 0) {
+            $this->list[] = str_repeat(')', $this->openedGroups);
+            $this->openedGroups = 0;
+        }
+    }
+
     public function build(): string
     {
         if (empty($this->list)) {
             return '';
         }
+        $this->ensureGroupsAreClosed();
 
         return PHP_EOL . $this->type . $this->indent($this->list);
     }

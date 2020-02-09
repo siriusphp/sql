@@ -110,6 +110,21 @@ $select->whereSprintf("publish_date <= NOW() AND parent_id = %s AND title LIKE %
 // SQL: publish_date <= NOW() and parent_id = 10 AND title LIKE '%ABC%' OR author_id = 20
 ```
 
+#### Grouping existing conditions
+
+There are times when some piece of code generates some conditions for a query and later another piece of code (via events, callbacks or decorators) attach additional conditions that work on top of the current conditions.
+
+```php
+$select->where('id', 10)
+    ->orWhere('id', 15);
+// SQL at this point: WHERE id = 10 OR id = 15
+
+// later you restrict everything
+$select->groupCurrentWhere()
+    ->where('author_id', 1);
+// SQL: WHERE (id = 10 OR id = 15) AND author_id = 15
+```
+
 ## JOINs
 
 ```php

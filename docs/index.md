@@ -41,7 +41,7 @@ composer require siriusphp/sql
 
 ## Links
 
-- [documentation](http://sirius.ro/php/sirius/sql/)
+- [documentation](https://www.sirius.ro/php/sirius/sql/)
 - [changelog](CHANGELOG.md)
 
 

@@ -54,7 +54,7 @@ class Conditions extends Component
 
     public function openGroup($type = 'AND')
     {
-        $this->list[] = empty($this->list) ? '(' : $type . ' (';
+        $this->append($type . ' ', '(');
         $this->openedGroups++;
     }
 

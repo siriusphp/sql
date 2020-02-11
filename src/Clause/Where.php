@@ -21,8 +21,11 @@ trait Where
      *
      * @return $this
      */
-    public function where(string $column, $value = null, $condition = '=')
+    public function where($column, $value = null, $condition = '=')
     {
+        if (is_array($column) && is_array($value)) {
+            return $this->whereMultiple($column, $value, $condition);
+        }
         if (count(func_get_args()) == 1) {
             $this->where->and($column, null, null);
         } else {
@@ -35,6 +38,42 @@ trait Where
     public function whereSprintf(string $format, ...$bindInline)
     {
         $this->where->andSprintf($format, ...$bindInline);
+
+        return $this;
+    }
+
+    /**
+     * Helper method for situation when you need to query by primary key
+     * which consists of multiple columns. Only works for `=` and `IN`
+     *
+     * @param array $columns
+     * @param array $values
+     * @param $condition
+     *
+     * @return $this
+     */
+    public function whereMultiple(array $columns, array $values, $condition)
+    {
+        $condition = strtoupper($condition);
+        if ( ! in_array($condition, ['=', 'IN'])) {
+            throw new \InvalidArgumentException('For `whereMultiple` the condition `' . $condition . '` is not allowed');
+        }
+
+        if ( ! is_array($values[0])) {
+            $values = [$values];
+        }
+
+        $this->whereStartSet();
+        foreach ($values as $value) {
+            // match ALL of the column-value pairs
+            $this->orWhereStartSet();
+            foreach ($columns as $k => $column) {
+                $this->where($column, $value[$k]);
+            }
+            $this->endSet();
+        }
+
+        $this->endSet();
 
         return $this;
     }

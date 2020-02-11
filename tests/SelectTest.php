@@ -442,4 +442,38 @@ SQL;
             'title' => ['Cool title', \PDO::PARAM_STR]
         ], $clonedSelect->getBindValues());
     }
+
+    public function test_where_multiple()
+    {
+        $select = $this->newSelect();
+        $select->from('posts')
+               ->columns('*')
+               ->where(['key_1', 'key_2'], [[1, 2], [3, 4]]);
+
+        $expectedSql = <<<SQL
+SELECT
+    *
+FROM
+    posts
+WHERE
+    (
+        (
+        key_1 = :__1__
+        AND key_2 = :__2__
+        )
+        OR (
+        key_1 = :__3__
+        AND key_2 = :__4__
+        )
+    )
+SQL;
+
+        $this->assertSameStatement($expectedSql, $select->getStatement());
+        $this->assertSame([
+            '__1__' => [1, \PDO::PARAM_INT],
+            '__2__' => [2, \PDO::PARAM_INT],
+            '__3__' => [3, \PDO::PARAM_INT],
+            '__4__' => [4, \PDO::PARAM_INT],
+        ], $select->getBindValues());
+    }
 }

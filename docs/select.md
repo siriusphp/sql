@@ -125,6 +125,19 @@ $select->groupCurrentWhere()
 // SQL: WHERE (id = 10 OR id = 15) AND author_id = 15
 ```
 
+#### Multi-column IN condition
+
+The most common scenario for retrieving multiple rows is like so `SELECT * FROM table WHERE id IN (1, 2, 3)`. This does not work if the primary key uses more than 1 column. For this scenario you have access to `whereMultiple()`
+
+```php
+$values = [
+    [1, 2],
+    [2, 4]
+];
+$select->whereMultiple(['col_1', 'col_2'], $values);
+// SQL: WHERE ((col_1 = 1 AND col_2 = 2) OR (col_1 = 3 AND col_2 = 4))
+```
+
 ## JOINs
 
 ```php

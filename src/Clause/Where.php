@@ -55,11 +55,11 @@ trait Where
     public function whereMultiple(array $columns, array $values, $condition)
     {
         $condition = strtoupper($condition);
-        if ( ! in_array($condition, ['=', 'IN'])) {
+        if (! in_array($condition, ['=', 'IN'])) {
             throw new \InvalidArgumentException('For `whereMultiple` the condition `' . $condition . '` is not allowed');
         }
 
-        if ( ! is_array($values[0])) {
+        if (! is_array($values[0])) {
             $values = [$values];
         }
 

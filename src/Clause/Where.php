@@ -56,7 +56,9 @@ trait Where
     {
         $condition = strtoupper($condition);
         if (! in_array($condition, ['=', 'IN'])) {
-            throw new \InvalidArgumentException('For `whereMultiple` the condition `' . $condition . '` is not allowed');
+            throw new \InvalidArgumentException(
+                'For `whereMultiple` the condition `' . $condition . '` is not allowed'
+            );
         }
 
         if (! is_array($values[0])) {

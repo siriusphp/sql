@@ -4,7 +4,7 @@
         <log type="coverage-html" target="build/coverage/"/>
     </logging>
     <testsuites>
-        <testsuite name="sirius/orm">
+        <testsuite name="sirius/sql">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>

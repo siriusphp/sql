@@ -1,11 +1,11 @@
 # Sirius Sql
 
-[![Source Code](http://img.shields.io/badge/source-siriusphp/sql-blue.svg?style=flat-square)](https://github.com/siriusphp/sql)
-[![Latest Version](https://img.shields.io/packagist/v/siriusphp/sql.svg?style=flat-square)](https://github.com/siriusphp/sql/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/siriusphp/sql/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/siriusphp/sql/master.svg?style=flat-square)](https://travis-ci.org/siriusphp/sql)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/siriusphp/sql.svg?style=flat-square)](https://scrutinizer-ci.com/g/siriusphp/sql/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/siriusphp/sql.svg?style=flat-square)](https://scrutinizer-ci.com/g/siriusphp/sql)
+[![Source Code](http://img.shields.io/badge/source-siriusphp/sql-blue.svg)](https://github.com/siriusphp/sql)
+[![Latest Version](https://img.shields.io/packagist/v/siriusphp/sql.svg)](https://github.com/siriusphp/sql/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/siriusphp/sql/blob/master/LICENSE)
+[![Build Status](https://github.com/siriusphp/sql/workflows/CI/badge.svg)](https://github.com/siriusphp/sql/actions)
+[![Coverage Status](https://scrutinizer-ci.com/g/siriusphp/sql/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/siriusphp/sql/code-structure)
+[![Quality Score](https://scrutinizer-ci.com/g/siriusphp/sql/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/siriusphp/sql)
 
 The `siriusphp/sql` library is designed to help you build and execute SQL simple and complex queries in a fast and safe way. 
 
